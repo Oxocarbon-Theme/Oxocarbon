@@ -33,7 +33,9 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="com.github.lynxie.oxocarbon.Oxocarbon"/>
+
         <themeProvider id="0af50000-3240-48bd-9372-98b8f1ad135d" path="/themes/Oxocarbon.theme.json"/>
-        <bundledColorScheme path="/colors/Oxocarbon"/>
+        <bundledColorScheme id="5d38123b-2c02-409a-b2fb-e616e9f14e87" path="/colors/Oxocarbon"/>
     </extensions>
 </idea-plugin>

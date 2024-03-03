@@ -5,11 +5,17 @@
 </div>
 
 <div align="center">
-  
-![GitHub License](https://img.shields.io/github/license/ImLynxie/Oxocarbon?style=for-the-badge&logo=Github&labelColor=191919&color=ff74b8&link=https%3A%2F%2Fgithub.com%2FImLynxie%2FOxocarbon%2Fblob%2Fmaster%2FLICENSE)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/ImLynxie/Oxocarbon?style=for-the-badge&logo=github&labelColor=191919&color=ff74b8&link=https%3A%2F%2Fgithub.com%2FImLynxie%2FOxocarbon%2Fissues)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/ImLynxie/Oxocarbon?style=for-the-badge&logo=github&labelColor=191919&color=ff74b8&link=https%3A%2F%2Fgithub.com%2FImLynxie%2FOxocarbon%2Fissues)
-![JetBrains Plugin Downloads](https://img.shields.io/jetbrains/plugin/d/23806?style=for-the-badge&logo=Intellij&label=Plugin%20Downloads&labelColor=191919&color=ff74b8) 
+ 
+[![GitHub License](https://img.shields.io/github/license/ImLynxie/Oxocarbon?style=for-the-badge&logo=Github&labelColor=191919&color=ff74b8)](https://github.com/ImLynxie/Oxocarbon/blob/master/LICENSE)
+[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/ImLynxie/Oxocarbon?style=for-the-badge&logo=github&labelColor=191919&color=ff74b8)](https://github.com/ImLynxie/Oxocarbon/issues)
+[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/ImLynxie/Oxocarbon?style=for-the-badge&logo=github&labelColor=191919&color=ff74b8)](https://github.com/ImLynxie/Oxocarbon/pulls)
+[![JetBrains Plugin Downloads](https://img.shields.io/jetbrains/plugin/d/23806?style=for-the-badge&logo=Intellij&label=Plugin%20Downloads&labelColor=191919&color=ff74b8)](https://plugins.jetbrains.com/plugin/23806-oxocarbon?noRedirect=true)
+
+</div>
+
+<div align="center">
+
+[![Static Badge](https://img.shields.io/badge/Download%20Plugin%20Here-191919?style=for-the-badge&labelColor=191919)](https://plugins.jetbrains.com/plugin/23806-oxocarbon?noRedirect=true)
 
 </div>
 
@@ -28,6 +34,10 @@ at the end design.
 
 Although there is no other way to use the theme besides plug and play. I'd highly recommend using the [SF Liga Mono Nerd Font](https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized). I wasn't able to ship the font with the color scheme
 because it kept causing issues. When you change the font to my recommended font, please make sure to set the Typography settings to the following`
+
+To change typography settings navigate to` 
+
+<kbd>Settings</kbd> **>** <kbd>Editor</kbd> **>** <kbd>Font</kbd> **>** <kbd>Typography Settings</kbd>
 
 ![image](https://github.com/ImLynxie/Oxocarbon/assets/45225562/8606a8a8-d6ac-4299-a5c3-40e732f3e2d4)
 
