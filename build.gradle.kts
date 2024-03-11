@@ -36,11 +36,11 @@ intellij {
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     version.set(properties("pluginVersion"))
-    path.set(file("CHANGELOG.md").canonicalPath)
+    path.set(file(".github/CHANGELOG.md").canonicalPath)
     header.set(provider { "${version.get()} - ${date()}"})
     headerParserRegex.set("""(\d\.\d\.\d)""".toRegex())
     itemPrefix.set("-")
-    keepUnreleasedSection.set(false)
+    keepUnreleasedSection.set(true)
     unreleasedTerm.set("[Unreleased]")
     groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"))
 }

@@ -1,7 +1,7 @@
 name: Build and Publish Plugin
 on:
   push:
-    branches: master
+    branches: [master]
 jobs:
   build:
       name: Build and Publish Plugin
