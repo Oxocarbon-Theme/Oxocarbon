@@ -4,7 +4,7 @@ on:
     branches: master
 jobs:
   build:
-      name: Build Plugin
+      name: Build and Publish Plugin
       runs-on: ubuntu-latest
       steps:
         - name: Checkout Repository
@@ -33,13 +33,9 @@ jobs:
 
         - name: Build Plugin
           run: ./gradlew buildPlugin
-          
-  publish:
-      runs-on: ubuntu-latest
-      name: Publish Plugin
-      steps:
-      - name: Output Release Notes
-        run: |
+
+        - name: Output Release Notes
+          run: |
             echo "# 🚀 Tagged Release 🚀" >> $GITHUB_STEP_SUMMARY
             RELEASE_NOTES="$(./gradlew getChangelog --console=plain -q)"
             DELIMITER="$(openssl rand -hex 8)"
@@ -50,22 +46,23 @@ jobs:
 
             echo "$RELEASE_NOTES" >> $GITHUB_STEP_SUMMARY
       
-      - name: Publish to Marketplace
-        env: 
-          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-        run: ./gradlew publishPlugin
+        - name: Publish to Marketplace
+          env: 
+            PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+          run: ./gradlew publishPlugin
 
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: build/libs/*.jar
-          body: ${{ env.release_notes }}
-          draft: true
+        - name: Create Release
+          uses: ncipollo/release-action@v1
+          with:
+            artifacts: build/libs/*.jar
+            body: ${{ env.release_notes }}
+            draft: true
         
-      - name: Commit Release Notes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "Docs: Update Changelog"
-          branch: main
-          file_pattern: ./github/CHANGELOG.md
+        - name: Commit Release Notes
+          uses: stefanzweifel/git-auto-commit-action@v4
+          with:
+            commit_message: "Docs: Update Changelog"
+            branch: main
+            file_pattern: ./github/CHANGELOG.md
+      
     
