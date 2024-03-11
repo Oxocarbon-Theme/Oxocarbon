@@ -1,5 +1,19 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## 1.0.7 - 2024-03-02
 - Added an ID to the custom colorscheme to prevent the IDE from throwing exceptions.
 - Added Download Plugin badge in README which redirects to the Plugin page @Jetbrains Plugin Hub.
