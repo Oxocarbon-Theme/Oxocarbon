@@ -14,6 +14,11 @@
 
 ### Security
 
+## 1.0.8 - 2024-08-07
+
+### Fixed
+- Fixed compatibility issues with ide's running the latest 242.* builds.
+
 ## 1.0.7 - 2024-03-02
 - Added an ID to the custom colorscheme to prevent the IDE from throwing exceptions.
 - Added Download Plugin badge in README which redirects to the Plugin page @Jetbrains Plugin Hub.
