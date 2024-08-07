@@ -14,6 +14,14 @@
 
 ### Security
 
+## 1.1.0 - 2024-08-07
+
+### Added
+- Added a seperate settings Panel for theme related settings.
+- Added light mode base support for Oxocarbon - WIP for full light mode support!.
+- Added a notifications system for Oxocarbon related notifications.
+- Added a warning for anyone who chooses to use light mode, warning about the feature being WIP.
+
 ## 1.0.8 - 2024-08-07
 
 ### Fixed

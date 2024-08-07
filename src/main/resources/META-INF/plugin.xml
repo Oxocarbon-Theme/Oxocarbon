@@ -33,9 +33,31 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="com.github.lynxie.oxocarbon.Oxocarbon"/>
+        <postStartupActivity implementation="com.github.lynxie.oxocarbon.activities.OxocarbonStartupActivity"/>
+        
+        <notificationGroup displayType="BALLOON" id="Oxocarbon Settings" isLogByDefault="true"/>
 
-        <themeProvider id="0af50000-3240-48bd-9372-98b8f1ad135d" path="/themes/Oxocarbon.theme.json"/>
-        <bundledColorScheme id="5d38123b-2c02-409a-b2fb-e616e9f14e87" path="/colors/Oxocarbon"/>
+        <themeProvider id="0af50000-3240-48bd-9372-98b8f1ad135d" path="/themes/Oxocarbon_Dark.theme.json"/>
+        <themeProvider id="0ea5bde0-53ac-4607-80f2-3d6e89691ea2" path="/themes/Oxocarbon_Light.theme.json"/>
+        <bundledColorScheme id="5d38123b-2c02-409a-b2fb-e616e9f14e87" path="/colors/Oxocarbon_Dark"/>
+        <bundledColorScheme id="8ac3426d-ef6c-49d5-be33-0d3067768d01" path="/colors/Oxocarbon_Light"/>
+
+        <applicationService
+                serviceImplementation="com.github.lynxie.oxocarbon.settings.theme.ThemeSettings"
+        />
+        <applicationService
+                serviceImplementation="com.github.lynxie.oxocarbon.settings.OxocarbonVersionSettings"
+        />
+
+        <applicationConfigurable
+                parentId="appearance"
+                instance="com.github.lynxie.oxocarbon.settings.theme.ThemeSettingsConfigurable"
+                id="com.github.lynxie.oxocarbon.settings.theme.ThemeSettingsConfigurable"
+                displayName="Oxocarbon Settings"/>
     </extensions>
+    
+    <applicationListeners>
+        <listener class="com.github.lynxie.oxocarbon.settings.theme.ThemeSettingsListener"
+                  topic="com.intellij.ide.ui.LafManagerListener"/>
+    </applicationListeners>
 </idea-plugin>
