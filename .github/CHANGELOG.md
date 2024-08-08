@@ -14,6 +14,11 @@
 
 ### Security
 
+## 1.1.1 - 2024-08-08
+
+### Removed
+- Temporarily removed the custom Settings Panel
+
 ## 1.1.0 - 2024-08-07
 
 ### Added
