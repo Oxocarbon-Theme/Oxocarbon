@@ -31,7 +31,8 @@ class ThemeSettingsComponent {
             .panel
     }
     
-    fun setDropdownItem(dropdownItem: Any?) {
+    fun setDropdownItem(dropdownItem: Any) {
+        ThemeSettings.instance.dropdownState = dropdownItem
         themeSelectionDropdown.selectedItem = dropdownItem
     }
 }

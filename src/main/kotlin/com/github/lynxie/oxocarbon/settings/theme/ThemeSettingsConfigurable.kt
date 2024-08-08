@@ -30,7 +30,8 @@ class ThemeSettingsConfigurable : Configurable {
         if (themeSettingsState.dropdownState == "Oxocarbon Light") {
             SettingsNotifications.notifyLightVariantWarning(ProjectManager.getInstance().openProjects.first())
         }
-        
+
+        LafManager.getInstance().repaintUI()
         LafManager.getInstance().updateUI()
     }
 

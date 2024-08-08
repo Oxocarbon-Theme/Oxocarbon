@@ -1,5 +1,6 @@
 package com.github.lynxie.oxocarbon.settings.theme
 
+import com.intellij.ide.actions.QuickChangeLookAndFeel
 import com.intellij.ide.ui.LafManager
 import com.intellij.ide.ui.LafManagerListener
 import com.intellij.openapi.editor.colors.EditorColorsManager
@@ -16,12 +17,10 @@ class ThemeSettingsListener : LafManagerListener {
         
         val selectedThemeName = themeSettingsState.dropdownState
         
-        if (selectedThemeName != currentlyActiveUiName) {
-            println("_@user_$selectedThemeName")
+        if (selectedThemeName != currentlyActiveUiName && selectedThemeName.toString().contains("Oxocarbon")) {
             val selectedLaf = LafManager.getInstance().installedLookAndFeels.first { it.name == selectedThemeName }
-            editorColorsManager.globalScheme = editorColorsManager.getScheme("_@user_$selectedThemeName")
-            LafManager.getInstance().currentLookAndFeel = selectedLaf
-            LafManager.getInstance().repaintUI()
+            
+            QuickChangeLookAndFeel.switchLafAndUpdateUI(lafManager, selectedLaf, false)
         }
     }
 }

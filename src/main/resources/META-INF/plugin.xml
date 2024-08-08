@@ -49,15 +49,10 @@
                 serviceImplementation="com.github.lynxie.oxocarbon.settings.OxocarbonVersionSettings"
         />
 
-        <applicationConfigurable
-                parentId="appearance"
-                instance="com.github.lynxie.oxocarbon.settings.theme.ThemeSettingsConfigurable"
-                id="com.github.lynxie.oxocarbon.settings.theme.ThemeSettingsConfigurable"
-                displayName="Oxocarbon Settings"/>
+<!--        <applicationConfigurable-->
+<!--                parentId="appearance"-->
+<!--                instance="com.github.lynxie.oxocarbon.settings.theme.ThemeSettingsConfigurable"-->
+<!--                id="com.github.lynxie.oxocarbon.settings.theme.ThemeSettingsConfigurable"-->
+<!--                displayName="Oxocarbon Settings"/>-->
     </extensions>
-    
-    <applicationListeners>
-        <listener class="com.github.lynxie.oxocarbon.settings.theme.ThemeSettingsListener"
-                  topic="com.intellij.ide.ui.LafManagerListener"/>
-    </applicationListeners>
 </idea-plugin>
