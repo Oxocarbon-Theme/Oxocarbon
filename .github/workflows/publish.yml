@@ -53,7 +53,7 @@ jobs:
             prerelease: false
             automatic_release_tag: latest
             files: |
-              *.jar
+              build/libs/*.jar
         
         - name: Commit Release Notes
           uses: stefanzweifel/git-auto-commit-action@v4
