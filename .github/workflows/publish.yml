@@ -44,11 +44,18 @@ jobs:
         run: ./gradlew buildPlugin
 
       - name: Patch Changelog
-        run: ./gradlew patchChangelog --release-note="${{ steps.create_release.outputs.body }}"
+        run: ./gradlew patchChangelog --release-note="### ${{ steps.create_release.outputs.resolved_version }} \n ${{ steps.create_release.outputs.body }}"
+
+      - name: Commit Release Notes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Docs: Update Changelog"
+          branch: master
+          file_pattern: ./github/CHANGELOG.md
 
       - name: Create Release
         uses: ncipollo/release-action@v1.14.0
         with:
           artifacts: 'build/libs/*.jar'
           bodyFile: '.github/CHANGELOG.md'
-          commit: 'master'
+          tag: '${{ steps.create_release.outputs.tag_name }}'
