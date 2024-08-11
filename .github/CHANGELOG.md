@@ -14,6 +14,19 @@
 
 ### Security
 
+## 1.2.3 - 2024-08-11
+
+### Added
+- Added a parent panel for all Oxocarbon related settings. Can be found under the `Appearance & Behavior` category of all Jetbrains IDE's.
+- Added links within the parent panel, that when clicked will automatically open the category. This is the same functionality as the `Appearance & Behavior` parent panel.
+
+### Changed
+- Changed
+
+### Fixed
+- Fixed an Issue with Oxocarbon's `Theme Variant Dropdown Value` not syncing correctly with, the theme selected in the `Appearance` category within the IDE's own Settings Panel.
+Which would always prioritize the value selected within our own settings.
+
 ## 1.1.1 - 2024-08-08
 
 ### Removed

@@ -27,7 +27,4 @@ class OxocarbonStartupActivity : ProjectActivity {
             SettingsNotifications.notifyWelcome(project)
         }
     }
-
-    
-    
 }

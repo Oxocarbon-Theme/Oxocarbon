@@ -1,5 +1,6 @@
-package com.github.lynxie.oxocarbon.settings.theme
+package com.github.lynxie.oxocarbon.settings
 
+import com.github.lynxie.oxocarbon.enums.ThemeVariant
 import com.intellij.ide.ui.LafManager
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
@@ -12,21 +13,19 @@ import org.jetbrains.annotations.NonNls
 class ThemeSettings private constructor(): PersistentStateComponent<ThemeSettings> {
 
     private val lafManagerInstance : LafManager = LafManager.getInstance()
-    private var themeOptions = ThemeVariant.values()
-    private var currentlySelectedTheme : String = ""
-    
+    private var themeVariants = ThemeVariant.values()
 
     @NonNls
-    var dropdownState : Any = "Oxocarbon Dark"
+    var dropdownState : ThemeVariant = ThemeVariant.DARK
     
     init {
-        themeOptions.forEach {
+        
+        themeVariants.forEach {
             if (it.themeName == lafManagerInstance.currentLookAndFeel.name) {
-                currentlySelectedTheme = it.themeName
+                // Set initial state on IDE Launch.
+                dropdownState = it
             }
         }
-        
-        dropdownState = currentlySelectedTheme
     }
 
     override fun getState() = this

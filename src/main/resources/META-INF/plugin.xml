@@ -34,7 +34,7 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="com.github.lynxie.oxocarbon.activities.OxocarbonStartupActivity"/>
-        
+
         <notificationGroup displayType="BALLOON" id="Oxocarbon Settings" isLogByDefault="true"/>
 
         <themeProvider id="0af50000-3240-48bd-9372-98b8f1ad135d" path="/themes/Oxocarbon_Dark.theme.json"/>
@@ -43,16 +43,32 @@
         <bundledColorScheme id="8ac3426d-ef6c-49d5-be33-0d3067768d01" path="/colors/Oxocarbon_Light"/>
 
         <applicationService
-                serviceImplementation="com.github.lynxie.oxocarbon.settings.theme.ThemeSettings"
+                serviceImplementation="com.github.lynxie.oxocarbon.settings.ThemeSettings"
         />
         <applicationService
                 serviceImplementation="com.github.lynxie.oxocarbon.settings.OxocarbonVersionSettings"
         />
 
-<!--        <applicationConfigurable-->
-<!--                parentId="appearance"-->
-<!--                instance="com.github.lynxie.oxocarbon.settings.theme.ThemeSettingsConfigurable"-->
-<!--                id="com.github.lynxie.oxocarbon.settings.theme.ThemeSettingsConfigurable"-->
-<!--                displayName="Oxocarbon Settings"/>-->
+        <applicationConfigurable
+                parentId="appearance"
+                instance="com.github.lynxie.oxocarbon.settings.configurable.OxocarbonParentSettingsConfigurable"
+                id="6f004dfd-8730-4721-90c6-92d762bd0ffd"
+                displayName="Oxocarbon Settings"
+        />
+        <applicationConfigurable
+                parentId="6f004dfd-8730-4721-90c6-92d762bd0ffd"
+                instance="com.github.lynxie.oxocarbon.settings.configurable.AppearanceSettingsConfigurable"
+                id="2ea70210-3f9b-476a-9733-87d1b9864d67"
+                displayName="Appearance"
+        />
     </extensions>
+
+    <applicationListeners>
+        <listener
+                class="com.github.lynxie.oxocarbon.listeners.ThemeChangeListenerImpl"
+                topic="com.intellij.ide.ui.LafManagerListener"/>
+
+        <listener class="com.github.lynxie.oxocarbon.listeners.DropdownItemChangeListenerImpl"
+                  topic="com.github.lynxie.oxocarbon.topics.DropdownItemChangeListener"/>
+    </applicationListeners>
 </idea-plugin>
