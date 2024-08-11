@@ -51,3 +51,4 @@ jobs:
         with:
           artifacts: 'build/libs/*.jar'
           bodyFile: '.github/CHANGELOG.md'
+          commit: 'master'
