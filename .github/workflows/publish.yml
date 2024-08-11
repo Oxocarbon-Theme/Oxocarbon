@@ -38,6 +38,7 @@ jobs:
         - uses: release-drafter/release-drafter@v6
           with:
             config-name: configs/release-drafter.yml
+            version: ${{ env.VERSION }}
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
