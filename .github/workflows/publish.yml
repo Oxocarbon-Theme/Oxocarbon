@@ -48,7 +48,7 @@ jobs:
           
           echo "release_notes<<$DELIMITER" >> $GITHUB_ENV
           echo "$RELEASE_NOTES" >> $GITHUB_ENV
-          echo "$DELIMITER" >> $GITHUB_EN
+          echo "$DELIMITER" >> $GITHUB_ENV
           
           echo "$RELEASE_NOTES" >> $GITHUB_STEP_SUMMARY
 
