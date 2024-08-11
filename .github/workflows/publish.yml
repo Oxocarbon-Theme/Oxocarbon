@@ -40,6 +40,18 @@ jobs:
           echo "version=${{ steps.create_release.outputs.resolved_version }}" >> $GITHUB_ENV
           echo "name=$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')" >> $GITHUB_ENV
 
+      - name: Output Release Notes
+        run: |
+          echo "# 🚀 Tagged Release 🚀" >> $GITHUB_STEP_SUMMARY
+          RELEASE_NOTES="$(./gradlew getChangelog --console=plain -q)"
+          DELIMITER="$(openssl rand -hex 8)
+          
+          echo "release_notes<<$DELIMITER" >> $GITHUB_ENV
+          echo "$RELEASE_NOTES" >> $GITHUB_ENV
+          echo "$DELIMITER" >> $GITHUB_EN
+          
+          echo "$RELEASE_NOTES" >> $GITHUB_STEP_SUMMARY
+
       - name: Build Plugin
         run: ./gradlew buildPlugin
 
@@ -57,5 +69,5 @@ jobs:
         uses: ncipollo/release-action@v1.14.0
         with:
           artifacts: 'build/libs/*.jar'
-          bodyFile: '.github/CHANGELOG.md'
+          body: '${{ env.release_notes }}'
           tag: '${{ steps.create_release.outputs.tag_name }}'
