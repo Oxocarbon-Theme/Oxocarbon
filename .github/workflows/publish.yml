@@ -1,12 +1,15 @@
 name: Build and Publish Plugin
+
 on:
   workflow_dispatch:
   push:
     branches: [ master ]
+
 jobs:
   build:
     name: Build and Publish Plugin
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -24,7 +27,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Create Release Notes
-      - id: create_release
+        id: create_release
         uses: release-drafter/release-drafter@v6
         with:
           config-name: configs/release-drafter.yml
@@ -41,11 +44,10 @@ jobs:
         run: ./gradlew buildPlugin
 
       - name: Patch Changelog
-        run: ./gradlew patchChangelog --release-note= ${{ steps.create_release.outputs.body }}
+        run: ./gradlew patchChangelog --release-note="${{ steps.create_release.outputs.body }}"
 
       - name: Create Release
         uses: ncipollo/release-action@v1.14.0
         with:
           artifacts: 'build/libs/*.jar'
           bodyFile: '.github/CHANGELOG.md'
-    
