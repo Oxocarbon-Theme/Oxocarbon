@@ -44,7 +44,7 @@ jobs:
         run: |
           echo "# 🚀 Tagged Release 🚀" >> $GITHUB_STEP_SUMMARY
           RELEASE_NOTES="$(./gradlew getChangelog --console=plain -q)"
-          DELIMITER="$(openssl rand -hex 8)
+          DELIMITER="$(openssl rand -hex 8)"
           
           echo "release_notes<<$DELIMITER" >> $GITHUB_ENV
           echo "$RELEASE_NOTES" >> $GITHUB_ENV
