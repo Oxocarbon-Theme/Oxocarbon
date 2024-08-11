@@ -35,25 +35,11 @@ jobs:
         - name: Build Plugin
           run: ./gradlew buildPlugin
 
-        - name: Output Release Notes
-          run: |
-            echo "# 🚀 Tagged Release 🚀" >> $GITHUB_STEP_SUMMARY
-            RELEASE_NOTES="$(./gradlew getChangelog --console=plain -q)"
-            DELIMITER="$(openssl rand -hex 8)"
-
-            echo "release_notes<<$DELIMITER" >> $GITHUB_ENV
-            echo "$RELEASE_NOTES" >> $GITHUB_ENV
-            echo "$DELIMITER" >> $GITHUB_ENV
-
-            echo "$RELEASE_NOTES" >> $GITHUB_STEP_SUMMARY
-
-        - uses: "marvinpinto/action-automatic-releases@latest"
+        - uses: release-drafter/release-drafter@v6
           with:
-            repo_token: "${{ secrets.GITHUB_TOKEN }}"
-            prerelease: false
-            automatic_release_tag: latest
-            files: |
-              build/libs/*.jar
+            config-name: my-config.yml
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
         - name: Commit Release Notes
           uses: stefanzweifel/git-auto-commit-action@v4
