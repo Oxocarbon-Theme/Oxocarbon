@@ -1,7 +1,6 @@
 package com.github.lynxie.oxocarbon.notifications
 
 import com.intellij.ide.BrowserUtil
-import com.intellij.notification.Notification
 import com.intellij.notification.NotificationAction
 import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
@@ -26,39 +25,22 @@ class SettingsNotifications {
             "<p>Oxocarbon Light is currently a work in progress, some things may not look correctly," +
                     " or may not appear at all! If you notice anything that may seem off, please submit a ticket on GitHub!"
 
-
-        private val NOTIFICATION_GROUP = NotificationGroupManager.getInstance().getNotificationGroup(
-            NOTIFICATION_GROUP_ID
-        )
-
         private val pluginIcon: Icon = IconLoader.getIcon("/META-INF/pluginIcon.svg", SettingsNotifications::class.java)
 
         @Suppress("DialogTitleCapitalization")
         fun notifyWelcome(project: Project) {
-            val notification = NOTIFICATION_GROUP.createNotification(
-                title = "Oxocarbon Installation Successful",
-                WELCOME_MESSAGE,
-                NotificationType.INFORMATION
-            )
-            addNotificationActions(notification)
-            notification.setIcon(pluginIcon)
-            notification.notify(project)
+            NotificationGroupManager.getInstance().getNotificationGroup(NOTIFICATION_GROUP_ID).createNotification(
+                "Oxocarbon Installation Successful", WELCOME_MESSAGE, NotificationType.INFORMATION)
+                .setIcon(pluginIcon)
+                .notify(project)
         }
 
-        @Suppress("DialogTitleCapitalization")
         fun notifyLightVariantWarning(project: Project) {
-            val notification = NOTIFICATION_GROUP.createNotification(
-                "Oxocarbon Light Mode Notice",
-                LIGHT_MODE_WARNING,
-                NotificationType.WARNING
-            )
-            addNotificationActions(notification)
-            notification.setIcon(pluginIcon)
-            notification.notify(project)
-        }
-
-        private fun addNotificationActions(notification: Notification) {
-            notification.addAction(NotificationAction.createSimple("GitHub") { BrowserUtil.browse(GITHUB_LINK) })
+            NotificationGroupManager.getInstance().getNotificationGroup(NOTIFICATION_GROUP_ID).createNotification(
+                "Light mode WIP", LIGHT_MODE_WARNING, NotificationType.WARNING)
+                .addAction(NotificationAction.createSimple("GitHub") {BrowserUtil.browse(GITHUB_LINK)})
+                .setIcon(pluginIcon)
+                .notify(project)
         }
     }
 }

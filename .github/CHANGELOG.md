@@ -15,6 +15,7 @@
 - Fixed the NoSuchElementException being thrown on IDE Startup.
 - Notification not displaying when the Light variant was selected.
 - A typo in the notification body. "my" -> "may"
+- Fixed IDE throwing exceptions regarding Notifications.
 
 ## v1.1.1 - 2024-08-08
 
