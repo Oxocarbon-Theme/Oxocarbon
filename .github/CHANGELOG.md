@@ -3,8 +3,10 @@
 ## [Unreleased]
 
 ### 🚀 Features
+- Added a seperate png file for the Light Variant emptyFrameBackground.
 
 ### 📝 Changes
+- Changed the emptyFrameBackground for the Dark theme to not include a background.
 - Changed Actions pipeline to further automate releasing and publishing plugins.
 
 ### 🪦 Removed
