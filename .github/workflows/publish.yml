@@ -1,69 +1,65 @@
 name: Build and Publish Plugin
+
 on:
   workflow_dispatch:
   push:
-    branches: [master]
+    branches: [ master ]
+
 jobs:
   build:
-      name: Build and Publish Plugin
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v4
-          with:
-            ref: master
+    name: Build and Publish Plugin
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Setup Java
+        uses: actions/setup-java@v4.0.0
+        with:
+          distribution: zulu
+          java-version: 17
+          cache: 'gradle'
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Export Properties
+        run: |
+          PROPERTIES="$(./gradlew properties --console=plain -q)"
+          echo "version=$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')" >> $GITHUB_ENV
+          echo "name=$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')" >> $GITHUB_ENV
+
+      - name: Output Release Notes
+        run: |
+          echo "# 🚀 Tagged Release 🚀" >> $GITHUB_STEP_SUMMARY
+          RELEASE_NOTES="$(./gradlew getChangelog --console=plain -q)"
+          DELIMITER="$(openssl rand -hex 8)"
           
-        - name: Setup Java
-          uses: actions/setup-java@v3
-          with:
-            distribution: zulu
-            java-version: 17
-            cache: 'gradle'
+          echo "release_notes<<$DELIMITER" >> $GITHUB_ENV
+          echo "$RELEASE_NOTES" >> $GITHUB_ENV
+          echo "$DELIMITER" >> $GITHUB_ENV
+          
+          echo "$RELEASE_NOTES" >> $GITHUB_STEP_SUMMARY
 
-        - name: Make gradlew executable
-          run: chmod +x ./gradlew
+      - name: Build Plugin
+        run: ./gradlew buildPlugin
 
-        - name: Export Properties
-          run: |
-            PROPERTIES="$(./gradlew properties --console=plain -q)"
-            echo "version=$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')" >> $GITHUB_ENV
-            echo "name=$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')" >> $GITHUB_ENV
-            
-        - name: Patch Changelog
-          run: ./gradlew patchChangelog
+      - name: Patch Changelog
+        run: ./gradlew patchChangelog
 
-        - name: Build Plugin
-          run: ./gradlew buildPlugin
+      - name: Commit Release Notes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Docs: Update Changelog"
+          branch: master
+          file_pattern: ./github/CHANGELOG.md
 
-        - name: Output Release Notes
-          run: |
-            echo "# 🚀 Tagged Release 🚀" >> $GITHUB_STEP_SUMMARY
-            RELEASE_NOTES="$(./gradlew getChangelog --console=plain -q)"
-            DELIMITER="$(openssl rand -hex 8)"
-
-            echo "release_notes<<$DELIMITER" >> $GITHUB_ENV
-            echo "$RELEASE_NOTES" >> $GITHUB_ENV
-            echo "$DELIMITER" >> $GITHUB_ENV
-
-            echo "$RELEASE_NOTES" >> $GITHUB_STEP_SUMMARY
-      
-        - name: Publish to Marketplace
-          env: 
-            PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-          run: ./gradlew publishPlugin
-
-        - name: Create Release
-          uses: ncipollo/release-action@v1
-          with:
-            artifacts: build/libs/*.jar
-            body: ${{ env.release_notes }}
-            draft: true
-        
-        - name: Commit Release Notes
-          uses: stefanzweifel/git-auto-commit-action@v4
-          with:
-            commit_message: "Docs: Update Changelog"
-            branch: main
-            file_pattern: ./github/CHANGELOG.md
-      
-    
+      - name: Create Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          artifacts: 'build/libs/*.jar'
+          body: '${{ env.release_notes }}'
+          tag: 'v${{ env.version }}'

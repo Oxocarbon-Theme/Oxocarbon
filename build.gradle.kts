@@ -37,12 +37,12 @@ intellij {
 changelog {
     version.set(properties("pluginVersion"))
     path.set(file(".github/CHANGELOG.md").canonicalPath)
-    header.set(provider { "${version.get()} - ${date()}"})
-    headerParserRegex.set("""(\d\.\d\.\d)""".toRegex())
+    header.set(provider { "v${version.get()} - ${date()}"})
+    headerParserRegex.set("""(v\d\.\d\.\d)""".toRegex())
     itemPrefix.set("-")
     keepUnreleasedSection.set(true)
     unreleasedTerm.set("[Unreleased]")
-    groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"))
+    groups.set(listOf("🚀 Features", "📝 Changes", "🪦 Removed", "🐛 Fixed"))
 }
 
 tasks {
