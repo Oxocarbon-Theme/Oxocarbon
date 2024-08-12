@@ -32,15 +32,6 @@ jobs:
           echo "version=$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')" >> $GITHUB_ENV
           echo "name=$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')" >> $GITHUB_ENV
 
-      - name: Create Release Notes
-        id: create_release
-        uses: release-drafter/release-drafter@v6
-        with:
-          config-name: configs/release-drafter.yml
-          version: ${{ env.version }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Output Release Notes
         run: |
           echo "# 🚀 Tagged Release 🚀" >> $GITHUB_STEP_SUMMARY
@@ -71,4 +62,4 @@ jobs:
         with:
           artifacts: 'build/libs/*.jar'
           body: '${{ env.release_notes }}'
-          tag: '${{ steps.create_release.outputs.tag_name }}'
+          tag: 'v${{ env.version }}'
