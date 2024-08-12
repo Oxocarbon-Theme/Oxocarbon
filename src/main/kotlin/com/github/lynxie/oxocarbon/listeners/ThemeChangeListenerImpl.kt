@@ -20,15 +20,14 @@ class ThemeChangeListenerImpl : LafManagerListener {
             if (settingsPanel != null) {
                 if (settingsPanel.themeSelectionDropdown.selectedItem != themeVariant) {
                     settingsPanel.setVariantDropdownItem(themeVariant)
-
-                    // Notify user if needed
-                    if (themeVariant.themeName == ThemeVariant.LIGHT.themeName) {
-                        val project = ProjectManager.getInstance().defaultProject
-                        SettingsNotifications.notifyLightVariantWarning(project)
-                    }
-                    ApplicationManager.getApplication().messageBus
                 }
             }
+        }
+
+        // Notify user if needed
+        if (selectedLafName == ThemeVariant.LIGHT.themeName) {
+            val project = ProjectManager.getInstance().defaultProject
+            SettingsNotifications.notifyLightVariantWarning(project)
         }
     }
 }
