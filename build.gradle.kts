@@ -42,7 +42,7 @@ changelog {
     itemPrefix.set("-")
     keepUnreleasedSection.set(true)
     unreleasedTerm.set("[Unreleased]")
-    groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"))
+    groups.set(listOf("🚀 Features", "📝 Changes", "🪦 Removed", "🐛 Fixed"))
 }
 
 tasks {

@@ -2,26 +2,22 @@
 
 ## [Unreleased]
 
-### Added
+### 🚀 Features
 
-### Changed
+### 📝 Changes
 
-### Deprecated
+### 🪦 Removed
 
-### Removed
-
-### Fixed
-
-### Security
+### 🐛 Fixed
 
 ## 1.1.1 - 2024-08-08
 
-### Removed
+### 🪦 Removed
 - Temporarily removed the custom Settings Panel
 
 ## 1.1.0 - 2024-08-07
 
-### Added
+### 🚀 Features
 - Added a seperate settings Panel for theme related settings.
 - Added light mode base support for Oxocarbon - WIP for full light mode support!.
 - Added a notifications system for Oxocarbon related notifications.
@@ -29,18 +25,25 @@
 
 ## 1.0.8 - 2024-08-07
 
-### Fixed
+### 🐛 Fixed
 - Fixed compatibility issues with ide's running the latest 242.* builds.
 
 ## 1.0.7 - 2024-03-02
+
+### 🚀 Features
 - Added an ID to the custom colorscheme to prevent the IDE from throwing exceptions.
 - Added Download Plugin badge in README which redirects to the Plugin page @Jetbrains Plugin Hub.
-- Fixed ReadMe Badge links failing to link to their respective URLs.
 - Added more information to ReadMe regarding changing font typography to make it easier for users to find the where the setting is located.
 - Added the Ascii Oxocarbon logo used in the original neovim config to the background of an empty frame.
+
+### 🐛 Fixed
 - Fixed Terminal color background not matching overall theme.
+- Fixed ReadMe Badge links failing to link to their respective URLs.
+
 
 ## 1.0.1 - 2024-02-24
+
+### 🚀 Features
 - Added Plugin Logo.
 
 ## 1.0.0 - 2024-02-21
