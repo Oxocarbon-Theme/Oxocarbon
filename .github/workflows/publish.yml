@@ -65,5 +65,6 @@ jobs:
           tag: 'v${{ env.version }}'
 
       - name: Publish to Marketplace
-        PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+        env:
+          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         run: ./gradlew publishPlugin
