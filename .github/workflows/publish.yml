@@ -26,19 +26,20 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      - name: Export Properties
+        run: |
+          PROPERTIES="$(./gradlew properties --console=plain -q)"
+          echo "version=$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')" >> $GITHUB_ENV
+          echo "name=$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')" >> $GITHUB_ENV
+
       - name: Create Release Notes
         id: create_release
         uses: release-drafter/release-drafter@v6
         with:
           config-name: configs/release-drafter.yml
+          version: ${{ env.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Export Properties
-        run: |
-          PROPERTIES="$(./gradlew properties --console=plain -q)"
-          echo "version=${{ steps.create_release.outputs.resolved_version }}" >> $GITHUB_ENV
-          echo "name=$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')" >> $GITHUB_ENV
 
       - name: Output Release Notes
         run: |
@@ -56,7 +57,7 @@ jobs:
         run: ./gradlew buildPlugin
 
       - name: Patch Changelog
-        run: ./gradlew patchChangelog --release-note="### ${{ steps.create_release.outputs.resolved_version }} \n ${{ steps.create_release.outputs.body }}"
+        run: ./gradlew patchChangelog
 
       - name: Commit Release Notes
         uses: stefanzweifel/git-auto-commit-action@v5
