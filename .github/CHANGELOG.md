@@ -3,12 +3,19 @@
 ## [Unreleased]
 
 ### 🚀 Features
+- Added a seperate png file for the Light Variant emptyFrameBackground.
 
 ### 📝 Changes
+- Changed the emptyFrameBackground for the Dark theme to not include a background.
+- Changed Actions pipeline to further automate releasing and publishing plugins.
 
 ### 🪦 Removed
 
 ### 🐛 Fixed
+- Fixed the NoSuchElementException being thrown on IDE Startup.
+- Notification not displaying when the Light variant was selected.
+- A typo in the notification body. "my" -> "may"
+- Fixed IDE throwing exceptions regarding Notifications.
 
 ## v1.1.1 - 2024-08-08
 
