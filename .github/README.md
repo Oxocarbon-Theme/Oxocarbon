@@ -10,7 +10,8 @@
 [![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/ImLynxie/Oxocarbon?style=for-the-badge&logo=github&labelColor=191919&color=ff74b8)](https://github.com/ImLynxie/Oxocarbon/issues)
 [![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/ImLynxie/Oxocarbon?style=for-the-badge&logo=github&labelColor=191919&color=ff74b8)](https://github.com/ImLynxie/Oxocarbon/pulls)
 [![JetBrains Plugin Downloads](https://img.shields.io/jetbrains/plugin/d/23806?style=for-the-badge&logo=Intellij&label=Plugin%20Downloads&labelColor=191919&color=ff74b8)](https://plugins.jetbrains.com/plugin/23806-oxocarbon?noRedirect=true)
-
+<br/>
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ImLynxie/Oxocarbon/publish.yml?style=for-the-badge&label=Build&labelColor=191919&color=ff74b8)](https://github.com/ImLynxie/Oxocarbon/actions/workflows/publish.yml)
 </div>
 
 <div align="center">
