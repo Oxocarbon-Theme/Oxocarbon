@@ -16,8 +16,8 @@ class ThemeChangeListenerImpl : LafManagerListener {
         val settingsPanel = OxocarbonManager.appearanceSettingsPanel
 
         ApplicationManager.getApplication().invokeLater {
-            val themeVariant = ThemeVariant.getThemeVariantWithName(selectedLafName)
             if (settingsPanel != null) {
+                val themeVariant = ThemeVariant.getThemeVariantWithName(selectedLafName)
                 if (settingsPanel.themeSelectionDropdown.selectedItem != themeVariant) {
                     settingsPanel.setVariantDropdownItem(themeVariant)
                 }
