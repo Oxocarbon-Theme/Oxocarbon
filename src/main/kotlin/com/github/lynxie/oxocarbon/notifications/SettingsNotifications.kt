@@ -23,7 +23,7 @@ class SettingsNotifications {
 
         @Language("HTML")
         private const val LIGHT_MODE_WARNING: String =
-            "<p>Oxocarbon Light is currently a work in progress, some things my not look correctly," +
+            "<p>Oxocarbon Light is currently a work in progress, some things may not look correctly," +
                     " or may not appear at all! If you notice anything that may seem off, please submit a ticket on GitHub!"
 
 

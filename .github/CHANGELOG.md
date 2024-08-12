@@ -7,9 +7,13 @@
 
 ### 📝 Changes
 - Changed the emptyFrameBackground for the Dark theme to not include a background.
+- Changed Actions pipeline to further automate releasing and publishing plugins.
+
 ### 🪦 Removed
 
 ### 🐛 Fixed
+- Notification not displaying when the Light variant was selected.
+- A typo in the notification body. "my" -> "may"
 
 ## v1.1.1 - 2024-08-08
 
