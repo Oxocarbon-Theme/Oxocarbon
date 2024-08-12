@@ -63,3 +63,6 @@ jobs:
           artifacts: 'build/libs/*.jar'
           body: '${{ env.release_notes }}'
           tag: 'v${{ env.version }}'
+
+      - name: Publish to Marketplace
+        run: ./gradlew publishPlugin
