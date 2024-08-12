@@ -38,7 +38,7 @@ changelog {
     version.set(properties("pluginVersion"))
     path.set(file(".github/CHANGELOG.md").canonicalPath)
     header.set(provider { "v${version.get()} - ${date()}"})
-    headerParserRegex.set("""~/(?<version>v\d+\.\d+\.\d+) - \d{4}-\d{2}-\d{2}/""".toRegex())
+    headerParserRegex.set("""(v\d+\.\d+\.\d+) - \d{4}-\d{2}-\d{2}""".toRegex())
     itemPrefix.set("-")
     keepUnreleasedSection.set(true)
     unreleasedTerm.set("[Unreleased]")
