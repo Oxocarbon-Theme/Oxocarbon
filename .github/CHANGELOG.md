@@ -5,6 +5,7 @@
 ### 🚀 Features
 
 ### 📝 Changes
+- Changed Actions pipeline to further automate releasing and publishing plugins.
 
 ### 🪦 Removed
 
