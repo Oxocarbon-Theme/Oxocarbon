@@ -32,6 +32,12 @@ jobs:
           echo "version=$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')" >> $GITHUB_ENV
           echo "name=$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')" >> $GITHUB_ENV
 
+      - name: Build Plugin
+        run: ./gradlew buildPlugin
+
+      - name: Patch Changelog
+        run: ./gradlew patchChangelog
+
       - name: Output Release Notes
         run: |
           echo "# 🚀 Tagged Release 🚀" >> $GITHUB_STEP_SUMMARY
@@ -43,12 +49,6 @@ jobs:
           echo "$DELIMITER" >> $GITHUB_ENV
           
           echo "$RELEASE_NOTES" >> $GITHUB_STEP_SUMMARY
-
-      - name: Build Plugin
-        run: ./gradlew buildPlugin
-
-      - name: Patch Changelog
-        run: ./gradlew patchChangelog
 
       - name: Commit Release Notes
         uses: stefanzweifel/git-auto-commit-action@v5
