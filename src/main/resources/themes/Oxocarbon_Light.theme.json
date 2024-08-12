@@ -553,9 +553,8 @@
     }
   },
   "emptyFrameBackground": {
-    "image": "./images/emptyFrameBackground.png",
-    "fill": "plain",
+    "image": "./images/emptyFrameBackground_Light.png",
     "anchor": "center",
-    "transparency": 60
+    "transparency": 100
   }
 }
