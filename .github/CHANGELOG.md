@@ -9,6 +9,7 @@
 ### 🪦 Removed
 
 ### 🐛 Fixed
+- Fixed the NoSuchElementException being thrown on IDE Startup.
 
 ## v1.1.1 - 2024-08-08
 
