@@ -1,6 +1,8 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.date
 import org.jetbrains.intellij.platform.gradle.tasks.VerifyPluginTask
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = providers.gradleProperty(key)
 fun projectProperties(key: String) = project.findProperty(key).toString()
@@ -30,7 +32,13 @@ repositories {
 
 kotlin {
     jvmToolchain {
-        this.languageVersion.set(JavaLanguageVersion.of(projectProperties("javaVersion")))
+        languageVersion.set(JavaLanguageVersion.of(projectProperties("javaVersion")))
+    }
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(projectProperties("javaVersion")))
     }
 }
 
@@ -109,5 +117,8 @@ tasks {
             targetCompatibility = it
         }
 
+        withType<KotlinCompile> {
+            compilerOptions.jvmTarget.set(JvmTarget.valueOf("JVM_$it"))
+        }
     }
 }

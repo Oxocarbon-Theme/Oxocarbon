@@ -9,6 +9,7 @@ import com.intellij.ide.ui.LafManager
 
 class DropdownItemChangeListenerImpl : DropdownItemChangeListener {
 
+    @Suppress("removal", "DEPRECATION")
     override fun dropdownItemChanged() {
         val lafManagerInstance = LafManager.getInstance()
         val appearanceSettingsPanel : AppearanceSettingsPanel? = OxocarbonManager.appearanceSettingsPanel
