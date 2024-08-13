@@ -103,14 +103,14 @@
     },
     "ComboBox": {
       "ArrowButton": {
-        "background": "secondaryBackground",
+        "background": "primaryBackground",
         "iconColor": "primaryAccentColor",
         "disabledIconColor": "secondaryBackground",
         "nonEditableBackground": "primaryBackground"
       },
       "background": "primaryBackground",
       "foreground": "primaryForeground",
-      "nonEditableBackground": "secondaryBackground",
+      "nonEditableBackground": "primaryBackground",
       "selectionBackground": "selectionBackground",
       "selectionForeground": "secondaryAccentColor",
       "modifiedItemForeground": "primaryAccentColor"
@@ -123,7 +123,7 @@
     "Component": {
       "borderColor": "separatorColor",
       "disabledBorderColor": "separatorColor",
-      "focusedBorderColor": "accentcolor",
+      "focusedBorderColor": "primaryAccentColor",
       "focusColor": "primaryAccentColor",
       "iconColor": "primaryForeground",
       "hoverIconColor": "primaryAccentColor",
