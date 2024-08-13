@@ -9,11 +9,12 @@ import com.intellij.ide.ui.LafManager
 
 class DropdownItemChangeListenerImpl : DropdownItemChangeListener {
 
+    @Suppress("UnstableApiUsage")
     override fun dropdownItemChanged() {
         val lafManagerInstance = LafManager.getInstance()
         val appearanceSettingsPanel : AppearanceSettingsPanel? = OxocarbonManager.appearanceSettingsPanel
 
-        val currentlyActiveLaf = lafManagerInstance.currentLookAndFeel
+        val currentlyActiveLaf = lafManagerInstance.currentUIThemeLookAndFeel
 
         val selectedTheme = appearanceSettingsPanel?.themeSelectionDropdown?.selectedItem as ThemeVariant
 
@@ -21,7 +22,7 @@ class DropdownItemChangeListenerImpl : DropdownItemChangeListener {
             appearanceSettingsPanel.setVariantDropdownItem(selectedTheme)
         }
 
-        val selectedLaf = lafManagerInstance.installedLookAndFeels.first { it.name == selectedTheme.toString() }
+        val selectedLaf = lafManagerInstance.installedThemes.first { it.name == selectedTheme.toString() }
 
         QuickChangeLookAndFeel.switchLafAndUpdateUI(lafManagerInstance, selectedLaf, false)
     }

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NonNls
 class ThemeSettings private constructor(): PersistentStateComponent<ThemeSettings> {
 
     private val lafManagerInstance : LafManager = LafManager.getInstance()
-    private var themeVariants = ThemeVariant.values()
+    private var themeVariants = ThemeVariant.entries.toTypedArray()
 
     @NonNls
     var dropdownState : ThemeVariant = ThemeVariant.DARK
@@ -21,7 +21,8 @@ class ThemeSettings private constructor(): PersistentStateComponent<ThemeSetting
     init {
         
         themeVariants.forEach {
-            if (it.themeName == lafManagerInstance.currentLookAndFeel.name) {
+            @Suppress("UnstableApiUsage")
+            if (it.themeName == lafManagerInstance.currentUIThemeLookAndFeel.name) {
                 // Set initial state on IDE Launch.
                 dropdownState = it
             }
