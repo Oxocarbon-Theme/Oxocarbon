@@ -3,13 +3,23 @@
 ## [Unreleased]
 
 ### 🚀 Features
+
+### 📝 Changes
+- Migrated Jetbrains Platform Plugin from 1.x to 2.x
+
+### 🪦 Removed
+- Removed the use of deprecated methods within the plugin.
+
+### 🐛 Fixed
+
+## v1.3.9 - 2024-08-13
+
+### 🚀 Features
 - Added a seperate png file for the Light Variant emptyFrameBackground.
 
 ### 📝 Changes
 - Changed the emptyFrameBackground for the Dark theme to not include a background.
 - Changed Actions pipeline to further automate releasing and publishing plugins.
-
-### 🪦 Removed
 
 ### 🐛 Fixed
 - Fixed the NoSuchElementException being thrown on IDE Startup.
@@ -46,7 +56,6 @@
 ### 🐛 Fixed
 - Fixed Terminal color background not matching overall theme.
 - Fixed ReadMe Badge links failing to link to their respective URLs.
-
 
 ## v1.0.1 - 2024-02-24
 
