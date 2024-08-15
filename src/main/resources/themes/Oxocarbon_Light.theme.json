@@ -103,14 +103,14 @@
     },
     "ComboBox": {
       "ArrowButton": {
-        "background": "secondaryBackground",
+        "background": "tertiaryAccentColor",
         "iconColor": "primaryAccentColor",
         "disabledIconColor": "secondaryBackground",
-        "nonEditableBackground": "primaryBackground"
+        "nonEditableBackground": "tertiaryAccentcolor"
       },
       "background": "primaryBackground",
       "foreground": "primaryForeground",
-      "nonEditableBackground": "secondaryBackground",
+      "nonEditableBackground": "primaryBackground",
       "selectionBackground": "selectionBackground",
       "selectionForeground": "secondaryAccentColor",
       "modifiedItemForeground": "primaryAccentColor"
