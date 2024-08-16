@@ -3,13 +3,26 @@
 ## [Unreleased]
 
 ### 🚀 Features
+- Added a Custom Theme category to Oxocarbon's Parent Panel.
+
+### 📝 Changes
+- Changed Intellij Platform Plugin SDK to use version 2.x
+- Changed sub-category creation to be more dynamic.
+
+### 🪦 Removed
+
+### 🐛 Fixed
+- Fixed the majority of Light Theme issues.
+- Fixed README.md broken links after repository transfer to Organization. 
+
+## v1.3.9 - 2024-08-15
+
+### 🚀 Features
 - Added a seperate png file for the Light Variant emptyFrameBackground.
 
 ### 📝 Changes
 - Changed the emptyFrameBackground for the Dark theme to not include a background.
 - Changed Actions pipeline to further automate releasing and publishing plugins.
-
-### 🪦 Removed
 
 ### 🐛 Fixed
 - Fixed the NoSuchElementException being thrown on IDE Startup.
@@ -46,7 +59,6 @@
 ### 🐛 Fixed
 - Fixed Terminal color background not matching overall theme.
 - Fixed ReadMe Badge links failing to link to their respective URLs.
-
 
 ## v1.0.1 - 2024-02-24
 
