@@ -23,18 +23,22 @@
         <applicationService
                 serviceImplementation="com.github.lynxie.oxocarbon.settings.OxocarbonVersionSettings"
         />
+        <applicationService
+                serviceImplementation="com.github.lynxie.oxocarbon.settings.CustomThemeSettings"
+        />
 
         <applicationConfigurable
                 parentId="appearance"
                 instance="com.github.lynxie.oxocarbon.settings.configurable.OxocarbonParentSettingsConfigurable"
-                id="6f004dfd-8730-4721-90c6-92d762bd0ffd"
-                displayName="Oxocarbon Settings"
         />
         <applicationConfigurable
                 parentId="6f004dfd-8730-4721-90c6-92d762bd0ffd"
                 instance="com.github.lynxie.oxocarbon.settings.configurable.AppearanceSettingsConfigurable"
-                id="2ea70210-3f9b-476a-9733-87d1b9864d67"
-                displayName="Appearance"
+
+        />
+        <applicationConfigurable
+                parentId="6f004dfd-8730-4721-90c6-92d762bd0ffd"
+                instance="com.github.lynxie.oxocarbon.settings.configurable.CustomThemeSettingsConfigurable"
         />
     </extensions>
 
