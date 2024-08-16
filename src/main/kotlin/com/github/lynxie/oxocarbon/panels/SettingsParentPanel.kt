@@ -11,25 +11,45 @@ import javax.swing.JPanel
 /**
  * Parent container for all other settings that we may have in the future.
  *
- * This must be updated with an [ActionLink] that selects the child category on click.
+ * DO NOT configure this class, if sub-categories are to be added to [SettingsParentPanel], please add an entry to [SettingsCategory]
  */
 class SettingsParentPanel {
 
-    private val appearanceActionLink: ActionLink = ActionLink("Appearance")
-
-    val settingsPanel: JPanel = FormBuilder.createFormBuilder()
-        .setFormLeftIndent(0)
-        .addComponent(appearanceActionLink)
-        .addComponentFillVertically(JPanel(), 0)
-        .panel
+    val settingsPanel: JPanel
 
     init {
-        appearanceActionLink.addActionListener {
-            ApplicationManager.getApplication().invokeLater {
-                val settings = Settings.KEY.getData(DataManager.getInstance().getDataContext(settingsPanel))!!
+        settingsPanel = initialiseActionLinks()
+        initialiseActionLinkListeners()
+    }
 
-                settings.select(settings.find(SettingsCategory.APPEARANCE.id))
+    /**
+     * Dynamically creates an [ActionLink] for each [SettingsCategory], and adds it to the [SettingsParentPanel.settingsPanel].
+     */
+    private fun initialiseActionLinks(): JPanel {
+        val formBuilder = FormBuilder.createFormBuilder()
+        SettingsCategory.values().forEach { category ->
+            if (category.categoryName != SettingsCategory.PARENT.categoryName) {
+                formBuilder.addComponent(ActionLink(category.categoryName))
+            }
+        }
+        return formBuilder.setFormLeftIndent(0).addComponentFillVertically(JPanel(), 0).panel
+    }
 
+    /**
+     * Dynamically creates an [ActionLink.actionListener] for all sub categories stored within [SettingsParentPanel]
+     *
+     */
+    private fun initialiseActionLinkListeners() {
+        settingsPanel.components.forEach { component ->
+            if (component is ActionLink && component.text != SettingsCategory.PARENT.categoryName) {
+                component.addActionListener {
+                    val settingsCategory = SettingsCategory.getSettingsCategoryByName(component.text)
+                    ApplicationManager.getApplication().invokeLater {
+                        val settings = Settings.KEY.getData(DataManager.getInstance().getDataContext(settingsPanel))!!
+
+                        settings.select(settings.find(settingsCategory.id))
+                    }
+                }
             }
         }
     }

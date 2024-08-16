@@ -11,11 +11,11 @@ class OxocarbonParentSettingsConfigurable : SearchableConfigurable, Composite {
     private var settingsParentPanel : SettingsParentPanel? = null
 
     override fun getDisplayName(): String {
-        return "Oxocarbon Settings"
+        return SettingsCategory.PARENT.categoryName
     }
 
     override fun getId(): String {
-        return "6f004dfd-8730-4721-90c6-92d762bd0ffd"
+        return SettingsCategory.PARENT.id
     }
 
     override fun createComponent(): JComponent {
