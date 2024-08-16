@@ -15,7 +15,7 @@ enum class SettingsCategory(val configurable: Configurable, val categoryName: St
     companion object {
         fun getAllConfigurables(): Array<Configurable> {
             val array : Array<Configurable> = emptyArray()
-            values().forEach { array[it.ordinal] = it.configurable }
+            entries.forEach { array[it.ordinal] = it.configurable }
             return array
         }
 
