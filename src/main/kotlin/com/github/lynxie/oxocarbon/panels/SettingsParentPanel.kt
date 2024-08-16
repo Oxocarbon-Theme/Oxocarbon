@@ -27,7 +27,7 @@ class SettingsParentPanel {
      */
     private fun initialiseActionLinks(): JPanel {
         val formBuilder = FormBuilder.createFormBuilder()
-        SettingsCategory.values().forEach { category ->
+        SettingsCategory.entries.forEach { category ->
             if (category.categoryName != SettingsCategory.PARENT.categoryName) {
                 formBuilder.addComponent(ActionLink(category.categoryName))
             }
