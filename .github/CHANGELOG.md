@@ -12,6 +12,7 @@
 ### 🪦 Removed
 
 ### 🐛 Fixed
+- Fixed Incompatibility issues with IDE versions 2024.3
 - Fixed the majority of Light Theme issues.
 - Fixed README.md broken links after repository transfer to Organization. 
 
