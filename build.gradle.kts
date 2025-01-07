@@ -98,4 +98,14 @@ tasks {
             compilerOptions.jvmTarget.set(JvmTarget.valueOf("JVM_$it"))
         }
     }
+
+    patchPluginXml {
+        version = projectProperties("pluginVersion")
+        sinceBuild.set(projectProperties("pluginSinceBuild"))
+        untilBuild.set(projectProperties("pluginUntilBuild"))
+
+        changeNotes.set(provider {
+            changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML)
+        })
+    }
 }
