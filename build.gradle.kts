@@ -100,9 +100,9 @@ tasks {
     }
 
     patchPluginXml {
-        version = properties("pluginVersion")
-        sinceBuild.set(properties("pluginSinceBuild"))
-        untilBuild.set(properties("pluginUntilBuild"))
+        version = projectProperties("pluginVersion")
+        sinceBuild.set(projectProperties("pluginSinceBuild"))
+        untilBuild.set(projectProperties("pluginUntilBuild"))
 
         changeNotes.set(provider {
             changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML)
