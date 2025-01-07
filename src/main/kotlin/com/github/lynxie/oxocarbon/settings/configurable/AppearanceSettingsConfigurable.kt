@@ -1,6 +1,7 @@
 package com.github.lynxie.oxocarbon.settings.configurable
 
 import com.github.lynxie.oxocarbon.OxocarbonManager
+import com.github.lynxie.oxocarbon.enums.SettingsCategory
 import com.github.lynxie.oxocarbon.panels.AppearanceSettingsPanel
 import com.github.lynxie.oxocarbon.settings.ThemeSettings
 import com.intellij.openapi.options.SearchableConfigurable
@@ -12,11 +13,11 @@ class AppearanceSettingsConfigurable : SearchableConfigurable {
     private var appearanceSettingsPanel: AppearanceSettingsPanel? = null
 
     override fun getDisplayName(): String {
-        return "Oxocarbon"
+        return SettingsCategory.APPEARANCE.categoryName
     }
 
     override fun getId(): String {
-        return "2ea70210-3f9b-476a-9733-87d1b9864d67"
+        return SettingsCategory.APPEARANCE.id
     }
 
     override fun createComponent(): JComponent {
