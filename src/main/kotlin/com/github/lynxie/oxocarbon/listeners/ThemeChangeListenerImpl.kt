@@ -10,6 +10,7 @@ import com.intellij.openapi.project.ProjectManager
 
 class ThemeChangeListenerImpl : LafManagerListener {
 
+    @Suppress("removal", "DEPRECATION")
     override fun lookAndFeelChanged(lafManager: LafManager) {
 
         val selectedLafName = lafManager.currentLookAndFeel.name

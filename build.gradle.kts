@@ -1,41 +1,81 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.date
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-fun properties(key: String) = project.findProperty(key).toString()
+fun properties(key: String) = providers.gradleProperty(key)
+fun projectProperties(key: String) = project.findProperty(key).toString()
 
 plugins {
     // Java Support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "1.9.21"
+    id("org.jetbrains.kotlin.jvm") version "2.1.0"
     // Gradle IntelliJ Plugin
-    id("org.jetbrains.intellij") version "1.16.1"
+    id("org.jetbrains.intellij.platform") version "2.2.1"
     // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "2.0.0"
 }
 
-group = properties("pluginGroup")
-version = properties("pluginVersion")
+group = projectProperties("pluginGroup")
+version = projectProperties("pluginVersion")
 
 repositories {
     mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
+}
+
+dependencies {
+    intellijPlatform {
+        intellijIdeaCommunity(properties("platformVersion"))
+    }
 }
 
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-intellij {
-    pluginName.set(properties("pluginName"))
-    version.set(properties("platformVersion"))
-    type.set(properties("platformType")) // Target IDE Platform
+intellijPlatform {
+    pluginConfiguration {
+        name.set(projectProperties("platformName"))
+        version.set(projectProperties("platformVersion"))
+        changeNotes.set(provider {
+            changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML)
+        })
+        description = projectProperties("pluginDescription")
 
-    // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
-    plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
+        ideaVersion {
+            sinceBuild.set(projectProperties("pluginSinceBuild"))
+            untilBuild.set(projectProperties("pluginUntilBuild"))
+        }
+
+        vendor {
+            name.set(projectProperties("vendorName"))
+            email.set(projectProperties("vendorEmail"))
+            url.set(projectProperties("pluginUrl"))
+        }
+    }
+
+    pluginVerification {
+        ides {
+            recommended()
+        }
+    }
+
+    signing {
+        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
+        privateKey.set(System.getenv("PRIVATE_KEY"))
+        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+    }
+
+    publishing {
+        token.set(System.getenv("PUBLISH_TOKEN"))
+    }
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
-    version.set(properties("pluginVersion"))
+    version.set(projectProperties("pluginVersion"))
     path.set(file(".github/CHANGELOG.md").canonicalPath)
     header.set(provider { "v${version.get()} - ${date()}"})
     headerParserRegex.set("""(v\d\.\d\.\d)""".toRegex())
@@ -47,35 +87,24 @@ changelog {
 
 tasks {
     // Set the JVM compatibility versions
-    properties("javaVersion").let {
+    projectProperties("javaVersion").let {
         withType<JavaCompile> {
             sourceCompatibility = it
             targetCompatibility = it
         }
 
         withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = it
+            compilerOptions.jvmTarget.set(JvmTarget.valueOf("JVM_$it"))
         }
     }
 
-
     patchPluginXml {
-        version.set(properties("pluginVersion"))
+        version = properties("pluginVersion")
         sinceBuild.set(properties("pluginSinceBuild"))
         untilBuild.set(properties("pluginUntilBuild"))
 
         changeNotes.set(provider {
             changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML)
         })
-    }
-
-    signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
-    }
-
-    publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
     }
 }
