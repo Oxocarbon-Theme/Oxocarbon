@@ -1,6 +1,5 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.date
-import org.jetbrains.intellij.platform.gradle.tasks.VerifyPluginTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -11,9 +10,9 @@ plugins {
     // Java Support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "2.0.20-RC2"
+    id("org.jetbrains.kotlin.jvm") version "2.1.0"
     // Gradle IntelliJ Plugin
-    id("org.jetbrains.intellij.platform") version "2.0.1"
+    id("org.jetbrains.intellij.platform") version "2.2.1"
     // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "2.0.0"
 }
@@ -23,22 +22,14 @@ version = projectProperties("pluginVersion")
 
 repositories {
     mavenCentral()
-
     intellijPlatform {
         defaultRepositories()
-        intellijDependencies()
     }
 }
 
-kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(projectProperties("javaVersion")))
-    }
-}
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(projectProperties("javaVersion")))
+dependencies {
+    intellijPlatform {
+        intellijIdeaCommunity(properties("platformVersion"))
     }
 }
 
@@ -46,9 +37,8 @@ java {
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellijPlatform {
     pluginConfiguration {
-        id = projectProperties("pluginId")
-        name = projectProperties("pluginName")
-        version = projectProperties("pluginVersion")
+        name.set(projectProperties("platformName"))
+        version.set(projectProperties("platformVersion"))
         changeNotes.set(provider {
             changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML)
         })
@@ -67,15 +57,9 @@ intellijPlatform {
     }
 
     pluginVerification {
-        failureLevel = listOf(VerifyPluginTask.FailureLevel.COMPATIBILITY_PROBLEMS)
-
         ides {
             recommended()
         }
-    }
-
-    publishing {
-        token.set(System.getenv("PUBLISH_TOKEN"))
     }
 
     signing {
@@ -84,16 +68,8 @@ intellijPlatform {
         password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
     }
 
-
-}
-
-dependencies {
-    intellijPlatform {
-        instrumentationTools()
-        intellijIdeaCommunity("2024.2")
-        pluginVerifier()
-
-        bundledPlugins(properties("platformBundledPlugins").map { it.split(',') })
+    publishing {
+        token.set(System.getenv("PUBLISH_TOKEN"))
     }
 }
 
@@ -101,7 +77,7 @@ dependencies {
 changelog {
     version.set(projectProperties("pluginVersion"))
     path.set(file(".github/CHANGELOG.md").canonicalPath)
-    header.set(provider { "v${version.get()} - ${date()}" })
+    header.set(provider { "v${version.get()} - ${date()}"})
     headerParserRegex.set("""(v\d\.\d\.\d)""".toRegex())
     itemPrefix.set("-")
     keepUnreleasedSection.set(true)
@@ -120,5 +96,15 @@ tasks {
         withType<KotlinCompile> {
             compilerOptions.jvmTarget.set(JvmTarget.valueOf("JVM_$it"))
         }
+    }
+
+    patchPluginXml {
+        version = properties("pluginVersion")
+        sinceBuild.set(properties("pluginSinceBuild"))
+        untilBuild.set(properties("pluginUntilBuild"))
+
+        changeNotes.set(provider {
+            changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML)
+        })
     }
 }
