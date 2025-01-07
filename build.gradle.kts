@@ -37,6 +37,7 @@ dependencies {
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellijPlatform {
     pluginConfiguration {
+        id.set(projectProperties("pluginId"))
         name.set(projectProperties("platformName"))
         version.set(projectProperties("platformVersion"))
         changeNotes.set(provider {
