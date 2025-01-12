@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.github.lynxie.oxocarbon.settings
 
 import com.github.lynxie.oxocarbon.enums.ThemeVariant
@@ -23,8 +21,8 @@ class ThemeSettings private constructor(): PersistentStateComponent<ThemeSetting
     init {
         
         themeVariants.forEach {
-            @Suppress("removal")
-            if (it.themeName == lafManagerInstance.currentLookAndFeel.name) {
+            @Suppress("UnstableApiUsage")
+            if (it.themeName == lafManagerInstance.currentUIThemeLookAndFeel.name) {
                 // Set initial state on IDE Launch.
                 dropdownState = it
             }

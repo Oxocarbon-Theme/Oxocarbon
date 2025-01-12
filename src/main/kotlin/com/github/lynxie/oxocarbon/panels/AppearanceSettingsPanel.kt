@@ -4,7 +4,6 @@ import com.github.lynxie.oxocarbon.enums.ThemeVariant
 import com.github.lynxie.oxocarbon.settings.ThemeSettings
 import com.github.lynxie.oxocarbon.topics.DropdownItemChangeListener
 import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.observable.util.whenItemSelected
 import com.intellij.openapi.ui.ComboBox
 import com.intellij.util.ui.FormBuilder
 import java.awt.Component
@@ -16,7 +15,7 @@ import javax.swing.JPanel
 class AppearanceSettingsPanel {
 
     val settingsPanel: JPanel
-    val themeSelectionDropdown = ComboBox(ThemeVariant.values())
+    val themeSelectionDropdown = ComboBox(ThemeVariant.entries.toTypedArray())
 
     init {
 
@@ -28,8 +27,9 @@ class AppearanceSettingsPanel {
             .addComponentFillVertically(JPanel(), 0)
             .panel
 
-        themeSelectionDropdown.whenItemSelected<ThemeVariant> {
-            ApplicationManager.getApplication().messageBus.syncPublisher(DropdownItemChangeListener.DROPDOWN_ITEM_TOPIC).dropdownItemChanged()
+        themeSelectionDropdown.addItemListener {
+            ApplicationManager.getApplication().messageBus.syncPublisher(DropdownItemChangeListener.DROPDOWN_ITEM_TOPIC)
+                .dropdownItemChanged()
         }
     }
 
