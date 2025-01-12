@@ -10,10 +10,10 @@ import com.intellij.openapi.project.ProjectManager
 
 class ThemeChangeListenerImpl : LafManagerListener {
 
-    @Suppress("removal", "DEPRECATION")
+    @Suppress("UnstableApiUsage")
     override fun lookAndFeelChanged(lafManager: LafManager) {
 
-        val selectedLafName = lafManager.currentLookAndFeel.name
+        val selectedLafName = lafManager.currentUIThemeLookAndFeel.name
         val settingsPanel = OxocarbonManager.appearanceSettingsPanel
 
         ApplicationManager.getApplication().invokeLater {

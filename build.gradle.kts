@@ -1,16 +1,14 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.date
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = providers.gradleProperty(key)
 fun projectProperties(key: String) = project.findProperty(key).toString()
 
-plugins {
+ plugins {
     // Java Support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "2.1.0"
+    kotlin("jvm") version "2.1.0"
     // Gradle IntelliJ Plugin
     id("org.jetbrains.intellij.platform") version "2.2.1"
     // Gradle Changelog Plugin
@@ -29,7 +27,7 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        intellijIdeaCommunity(properties("platformVersion"))
+        intellijIdeaCommunity("2024.3")
     }
 }
 
@@ -87,15 +85,15 @@ changelog {
 }
 
 tasks {
-    // Set the JVM compatibility versions
-    projectProperties("javaVersion").let {
-        withType<JavaCompile> {
-            sourceCompatibility = it
-            targetCompatibility = it
-        }
-
-        withType<KotlinCompile> {
-            compilerOptions.jvmTarget.set(JvmTarget.valueOf("JVM_$it"))
-        }
-    }
+//    // Set the JVM compatibility versions
+//    projectProperties("javaVersion").let {
+//        withType<JavaCompile> {
+//            sourceCompatibility = it
+//            targetCompatibility = it
+//        }
+//
+//        withType<KotlinCompile> {
+//            compilerOptions.jvmTarget.set(JvmTarget.valueOf("JVM_$it"))
+//        }
+//    }
 }

@@ -30,16 +30,16 @@
         <applicationConfigurable
                 parentId="appearance"
                 instance="com.github.lynxie.oxocarbon.settings.configurable.OxocarbonParentSettingsConfigurable"
-        />
+                displayName="Oxocarbon Settings"/>
         <applicationConfigurable
                 parentId="6f004dfd-8730-4721-90c6-92d762bd0ffd"
                 instance="com.github.lynxie.oxocarbon.settings.configurable.AppearanceSettingsConfigurable"
+                displayName="Appearance"/>
 
-        />
         <applicationConfigurable
                 parentId="6f004dfd-8730-4721-90c6-92d762bd0ffd"
                 instance="com.github.lynxie.oxocarbon.settings.configurable.CustomThemeSettingsConfigurable"
-        />
+                displayName="Custom Theme"/>
     </extensions>
 
     <applicationListeners>
