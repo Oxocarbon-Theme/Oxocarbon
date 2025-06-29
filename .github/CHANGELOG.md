@@ -3,6 +3,18 @@
 ## [Unreleased]
 
 ### 🚀 Features
+
+### 📝 Changes
+- Changed compatibility version to support versions IDE's running 2025.*
+
+### 🪦 Removed
+
+### 🐛 Fixed
+
+
+## v1.4.5 - 2025-01-12
+
+### 🚀 Features
 - Added a Custom Theme category to Oxocarbon's Parent Panel.
 
 ### 📝 Changes
