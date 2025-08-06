@@ -11,6 +11,16 @@
 
 ### 🐛 Fixed
 
+## v1.4.6 - 2025-06-29
+
+### 🚀 Features
+
+### 📝 Changes
+- Changed compatibility version to support versions IDE's running 2025.2.*
+
+### 🪦 Removed
+
+### 🐛 Fixed
 
 ## v1.4.5 - 2025-01-12
 
