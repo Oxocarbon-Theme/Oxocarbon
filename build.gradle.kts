@@ -45,7 +45,7 @@ intellijPlatform {
 
         ideaVersion {
             sinceBuild.set(projectProperties("pluginSinceBuild"))
-            untilBuild.set(projectProperties("pluginSinceBuild"))
+            untilBuild = provider { null }
         }
 
         vendor {
