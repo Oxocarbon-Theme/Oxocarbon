@@ -5,6 +5,17 @@
 ### 🚀 Features
 
 ### 📝 Changes
+- Changed compatibility version to support all future IDE's
+
+### 🪦 Removed
+
+### 🐛 Fixed
+
+## v1.4.7 - 2025-09-28
+
+### 🚀 Features
+
+### 📝 Changes
 - Changed compatibility version to support versions IDE's running 2025.*
 
 ### 🪦 Removed
